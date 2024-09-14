@@ -119,4 +119,4 @@ for (let index = 0; index < array.length; index++) {
 // filter()---------------------
 //return new list (cac item tm đk)
 const items =data.filter((element,index)=> element.price>150);
-console.log(items);
+console.log(items);)
