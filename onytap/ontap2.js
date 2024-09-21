@@ -24,40 +24,43 @@ let list_1=[1,2,3,4,5];
 
 
 //gop obj 
-obj1 = {a:1,b:2};
-obj2={c:2,d:4};
-const obj3={...obj1,...obj2, a:5}
-console.log(obj3);
+// obj1 = {a:1,b:2};
+// obj2={c:2,d:4};
+// const obj3={...obj1,...obj2, a:5}
+// console.log(obj3);
 
 
 
 
 
-//rest --------------------------
+// //rest --------------------------
 
-const arr_r = [1, 2, 3, 4, 5, 6];
-const obj_r = [
-  { a: 1, b: 10 },
-  { a: 2, b: 9 },
-  { a: 3, b: 4 },
-  { a: 6, b: 5 },
-];
-//destrủing (obj/aray))
-var [m,n,o,p]=obj_r;
-console.table({m,n,o,p});
-//lay phan con lai - last 
-//aray --
-var [fist_item,sec_item,...last_items]=arr_r;
-console.log(last_items);
+// const arr_r = [1, 2, 3, 4, 5, 6];
+// const obj_r = [
+//   { a: 1, b: 10 },
+//   { a: 2, b: 9 },
+//   { a: 3, b: 4 },
+//   { a: 6, b: 5 },
+// ];
+// //destrủing (obj/aray))
+// var [m,n,o,p]=obj_r;
+// console.table({m,n,o,p});
+// //lay phan con lai - last 
+// //aray --
+// var [fist_item,sec_item,...last_items]=arr_r;
+// console.log(last_items);
 
-//obj 
-var obj_rest ={
-    a:1,
-    b:{a:"b"},
-    c:3,
-};
-var {a, ...last}=obj_rest;
-console.log(last);
-//cat obj +them ptu cho obj ms
-var {a:parentA,b:{name:childrenB},...last}=obj_rest
-console.log(parentA,childrenB);
+// //obj 
+// var obj_rest ={
+//     a:1,
+//     b:{a:"b"},
+//     c:3,
+// };
+// var {a, ...last}=obj_rest;
+// console.log(last);
+// //cat obj +them ptu cho obj ms
+// var {a:parentA,b:{name:childrenB},...last}=obj_rest
+// console.log(parentA,childrenB);
+
+
+
