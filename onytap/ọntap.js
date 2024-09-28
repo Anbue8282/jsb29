@@ -131,35 +131,57 @@
 
 
 
-class Animal{
-    $count;
+// class Animal{
+//     $count;
 
-    constructor(name="text",birthdate="1/1/1992",age=0){
-        this.name=name;
-        this.birthdate=birthdate;
-        this.age=age;
-        this.$count++;
-    }
-    speak(){
-        console.log("Animal is speaking!");
-    }
-    getName(){
-        return this.name;
-    }
-}
-//sub class => ke thua tu animal 
-class cat extends Animal{
-    constructor(name,birthdate,age){
-        super(name,birthdate,age);
+//     constructor(name="text",birthdate="1/1/1992",age=0){
+//         this.name=name;
+//         this.birthdate=birthdate;
+//         this.age=age;
+//         this.$count++;
+//     }
+//     speak(){
+//         console.log("Animal is speaking!");
+//     }
+//     getName(){
+//         return this.name;
+//     }
+// }
+// //sub class => ke thua tu animal 
+// class cat extends Animal{
+//     constructor(name,birthdate,age){
+//         super(name,birthdate,age);
 
-    }
-    speak(){
-        console.log("AAAAAAAAAAAAAAAAAaa có chuột!!!!!!")
-    }
-}
-const myPet=new cat("Doraemon");
-myPet.speak();
-console.log(myPet.getName());
+//     }
+//     speak(){
+//         console.log("AAAAAAAAAAAAAAAAAaa có chuột!!!!!!")
+//     }
+// }
+// const myPet=new cat("Doraemon");
+// myPet.speak();
+// console.log(myPet.getName());
 
 
 // document.getElementById("").addEventListener("click",functionName)
+
+
+
+class Parent {
+    constructor() {
+        this.value = 1;
+    }
+
+    increase() {
+        this.value++;
+    }
+}
+
+class Child extends Parent {
+    increase() {
+        this.value += 2;
+    }
+}
+
+let obj = new Child();
+obj.increase();
+console.log(obj.value);

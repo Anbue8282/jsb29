@@ -50,6 +50,8 @@ export default class Nav {
         window.location.href="./pages/login.html";
     }
     gotologout(){
+        // xoa du lieu trong local
+        localStorage.removeItem("currentUser")
         window.location.href="./pages/logout.html";
     }
 
