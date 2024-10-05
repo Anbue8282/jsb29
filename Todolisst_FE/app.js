@@ -1,31 +1,26 @@
-import Nav from "./componan/nav.js";
-import Footer from "./componan/footer.js";
 import Home from "./pages/home.js";
-import login from "./pages/login.js";
+import Login from "./pages/login.js";
+import Register from "./pages/register.js";
 
- 
- class App{
-    constructor(component){
-        this.component=component
-        this.mainContainer=document.getElementById("app")
+class App {
+  constructor() {
+    this.mainContainer = document.getElementById("app");
+  }
 
-    }
+  renderComponent(component) {
+    // xoa du lieu cu -> add component moi 
+    this.mainContainer.innerHTML = "";
+    component.render(this.mainContainer);
+  }
+}
 
-    rendercomponent(){
-        this.component.render(this.mainContainer);
+const home = new Home();
+const login = new Login();
+const register = new Register();
 
-    }
+// 1 project = 1 app
+const app = new App();
+// render giao dien
+app.renderComponent(login);
 
-
- }
-
-const home = new Home()
-const login = new login()
-
-
-
- //1 project = 1 app
- const app = new App(Home);
- // render giao dien 
- app.rendercomponent();
- export default app;
+export default app;
