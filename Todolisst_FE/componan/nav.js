@@ -1,5 +1,10 @@
+import Login from "../pages/login";
+
 export default class Nav {
-    constructor(){}
+    constructor(){
+        this.currentUser= JSON.parse(localStorage.getItem("currentUser"));
+        
+    }
 
     render(mainContainer){
         const nav = document.createElement("nav");
@@ -36,23 +41,29 @@ export default class Nav {
     }
     checkLogin(loginButton){
         //check current user in local strorage 
-        const currentUser=JSON.parse(localStorage.getItem("currentUser"));
-        if(currentUser){
-            loginButton.onclick = this.gotologout;
-            return "logout";
-        
-        } else {
-            loginButton.onclick = this.gotologin;
-            return "login";
-        }
+
+    loginButton.onclick = this.gotologout;
+    //them ten cho buttton    ->>> displayname 
+    const displayname = this.currentUser.providerData[0].displayname;
+    return displayname!=null ? displayname:"User";
     }
-    gotologin(){
-        window.location.href="./pages/login.html";
-    }
+
     gotologout(){
         // xoa du lieu trong local
         localStorage.removeItem("currentUser")
-        window.location.href="./pages/logout.html";
+        //logout trên firebasse
+
+
+
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            const login = new Login();
+            app.renderComponent(login);
+        }).catch((error) => {
+            // An error happened.
+            alert(error.message)
+        });
     }
 
         

@@ -1,3 +1,10 @@
+import firebaseapp from "./firebase.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import Login from "./login.js"
+
 export default class Register {
     constructor() {}
   
@@ -92,11 +99,15 @@ export default class Register {
       submitButton.className = "btn btn-primary px-5";
       submitButton.setAttribute("type", "submit");
       submitButton.innerText = "Register";
+      submitButton.addEventListener("click",this.checkRegister.bind(this));
   
       // Tao link dan den register
       const registerDiv = document.createElement("div");
       registerDiv.style.textAlign = "left";
       registerDiv.innerHTML = `<a href='#'>Login here</a>`;
+      registerDiv.addEventListener("click",this.gotoLogin.bind(this));
+
+
   
       // add in button group
       buttonGroup.appendChild(registerDiv);
@@ -113,5 +124,71 @@ export default class Register {
       // add vao mainContainer
       containerDiv.appendChild(form);
       mainContainer.appendChild(containerDiv);
+    }
+    validateForm(email,username,password,confirmPassword){
+
+
+        //ko nhap du lieu 
+        if (!(email && password && username && confirmPassword)){
+            alert("vui long nhap thong tin")
+            return false;
+
+        }
+        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+            alert("email ko dung dinh dang")
+            return false;
+
+        }
+        if (password.lenght<6){
+            alert("Mat khau qua ngan it nhat 6 ký tự ")
+            return false;
+        }
+        if (password != confirmpassword){
+            alert("mat khau ko trung khop")
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    checkRegister(){
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const confirmPassword = document.getElementById("confirm-password").value.trim();
+        if (this.validateForm(email,username,password,confirmPassword)){
+            const auth = getAuth(firebaseapp);
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+        
+            // luu them username 
+            updateProfile(user,{
+                displayName: username,
+                photoURL:"https://i.pinimg.com/236x/a3/9b/7b/a39b7b7bd7012a4f6fd2030c50e91d0e.jpg",
+
+            }).then(() => {
+                console.log("User profile updated");
+              })
+              .catch((error) => {
+                alert("Update profile error:", error);
+              });
+            console.log(user);
+
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            alert(errorMessage);
+            // ..
+        });
+
+        }
+
+        
+    }
+    gotoLogin(){
+        const login = new Login();
+        app.renderComponent(login);
     }
   }

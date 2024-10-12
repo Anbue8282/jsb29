@@ -1,7 +1,11 @@
 import app from "../app.js";
 import firebaseapp from "./firebase.js";
+import Home from "./home.js";
 import Register from "./register.js";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 export default class Login {
     constructor() {}
@@ -65,7 +69,9 @@ export default class Login {
       submitButton.className = "btn btn-primary px-5";
       submitButton.setAttribute("type", "submit");
       submitButton.innerText = "Login";
-  
+
+      //bat su kien cho button 
+      submitButton.addEventListener("click",this.checkLogin.bind(this))
       // Tao link dan den register
       const registerDiv = document.createElement("div");
       registerDiv.style.textAlign = "left";
@@ -95,6 +101,7 @@ export default class Login {
         app.renderComponent(register);
     }
     checkLogin(){
+
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
         //ko nhap du lieu 
@@ -109,11 +116,16 @@ export default class Login {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                // ...
+                // luu user hien tai 
+                localStorage.setItem("currenUser",JSON.stringify(user));
+                //chuyen trang 
+                const home = new Home();
+                app.renderComponent(home);
             })
             .catch((error) => {
-                const errorCode = error.code;
+
                 const errorMessage = error.message;
+                alert(errorMessage);
             });
 
         }

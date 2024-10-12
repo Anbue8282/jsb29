@@ -21,6 +21,6 @@ const register = new Register();
 // 1 project = 1 app
 const app = new App();
 // render giao dien
-app.renderComponent(login);
+app.renderComponent(register);
 
 export default app;

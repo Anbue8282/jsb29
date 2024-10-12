@@ -3,6 +3,14 @@ import Nav from "../componan/nav.js";
 
 export default class Home{
     constructor(){
+      this.currentUser = localStorage.getItem("currentUser");
+      if (!localStorage.getItem("currentUser")) {
+        // quay lai trang login
+        const login = new Login();
+        app.renderComponent(login);
+      } else {
+        this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      }
 
         this.nav = new Nav();
         this.footer = new Footer();
