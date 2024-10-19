@@ -1,14 +1,18 @@
 import app from "../app.js";
-import firebaseapp from "./firebase.js";
+import {firebaseapp} from "./firebase.js";
 import Home from "./home.js";
 import Register from "./register.js";
 import {
     getAuth,
     signInWithEmailAndPassword,
-  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 export default class Login {
-    constructor() {}
+    constructor() {
+        if (localStorage.getItem("currentUser")){
+
+        }
+    }
   
     render(mainContainer) {
       // tao container de form duoc nam giua
@@ -116,8 +120,11 @@ export default class Login {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+
                 // luu user hien tai 
+
                 localStorage.setItem("currenUser",JSON.stringify(user));
+                this.gotoHome();
                 //chuyen trang 
                 const home = new Home();
                 app.renderComponent(home);
@@ -132,4 +139,8 @@ export default class Login {
 
         
     }
+    gotoHome() {
+        const home = new Home();
+        app.renderComponent(home);
+      }
   }

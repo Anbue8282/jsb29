@@ -1,5 +1,10 @@
 import Login from "../pages/login";
 
+import {
+    getAuth,
+    signOut,
+  } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+
 export default class Nav {
     constructor(){
         this.currentUser= JSON.parse(localStorage.getItem("currentUser"));
