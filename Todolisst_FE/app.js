@@ -15,8 +15,7 @@ class App {
 }
 
 const home = new Home();
-const login = new Login();
-const register = new Register();
+
 
 // 1 project = 1 app
 const app = new App();

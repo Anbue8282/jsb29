@@ -1,8 +1,8 @@
-import firebaseapp from "./firebase.js";
+import {firebaseapp} from "./firebase.js";
 import {
     getAuth,
     createUserWithEmailAndPassword,
-  } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+  } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import Login from "./login.js"
 
 export default class Register {

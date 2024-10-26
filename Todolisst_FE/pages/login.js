@@ -9,12 +9,14 @@ import {
 
 export default class Login {
     constructor() {
-        if (localStorage.getItem("currentUser")){
 
-        }
     }
   
     render(mainContainer) {
+        if (localStorage.getItem("currentUser")){
+            this.gotoHome();
+
+        }
       // tao container de form duoc nam giua
       const containerDiv = document.createElement("div");
       containerDiv.classList.add("mt-5");
@@ -104,8 +106,8 @@ export default class Login {
         const register = new Register();
         app.renderComponent(register);
     }
-    checkLogin(){
-
+    checkLogin(event){
+        event.preventDefault();
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
         //ko nhap du lieu 

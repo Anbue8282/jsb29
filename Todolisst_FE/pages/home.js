@@ -132,7 +132,7 @@ export default class Home{
       try {
         const docRef = await addDoc(collection(database, "tasks"), {
           created_at: date.now(),
-          created_by: this.currentUser(),
+          created_by: this.currentUser.uid,
           name: task_name,
           status:"due",
         });
